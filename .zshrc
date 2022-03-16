@@ -105,6 +105,7 @@ alias gl='clear && git log --all --decorate --oneline --graph'
 alias ga='git add .'
 alias gc='git commit -v'
 alias gs='clear && git status'
+alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 alias openz="open ~/.zshrc"
 alias update="source ~/.zshrc"

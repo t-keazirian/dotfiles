@@ -61,6 +61,7 @@ Plugin 'kien/rainbow_parentheses.vim'              " Parenthesis highlighting
 Plugin 'MarcWeber/vim-addon-mw-utils'              " Interprets file by extension
 Plugin 'tpope/vim-surround'                        " Better parenthesis support
 Plugin 'itchyny/lightline.vim'                     " Better status line
+Plugin 'git@github.com:itchyny/vim-gitbranch.git'  " Git Branch display
 Plugin 'elmcast/elm-vim'                           " Elm plugin
 Plugin 'elixir-lang/vim-elixir'                    " Elixir plugin
 Plugin 'slashmili/alchemist.vim'                   " Elixir plugin for ElixirSense
@@ -69,7 +70,6 @@ Plugin 'w0rp/ale'                                  " Linting engine
 Plugin 'pangloss/vim-javascript'                   " Javascript
 Plugin 'othree/yajs.vim'                           " javascript syntax
 Plugin 'mxw/vim-jsx'                               " JSX highlighting
-Plugin 'vim-airline/vim-airline'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'rust-lang/rust.vim'                        " Rust plugin
@@ -87,15 +87,25 @@ filetype plugin indent on    " required
 au FileType json setl sw=2 sts=2 et                " Indentation for json
 
 " More Haskell stuff
-let g:airline#extensions#ale#enabled = 1
-nnoremap <Leader>ht :GhcModType<cr>
-nnoremap <Leader>htc :GhcModTypeClear<cr>
-autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
+"let g:airline#extensions#ale#enabled = 1
+"nnoremap <Leader>ht :GhcModType<cr>
+"nnoremap <Leader>htc :GhcModTypeClear<cr>
+"autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
 " Better search
 set hlsearch
 set incsearch
 
+" Git Branch/Lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 " ================================================ ale lint ==========================================
 let g:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
