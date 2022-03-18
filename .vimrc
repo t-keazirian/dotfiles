@@ -95,6 +95,8 @@ au FileType json setl sw=2 sts=2 et                " Indentation for json
 " Better search
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 " Git Branch/Lightline
 let g:lightline = {
