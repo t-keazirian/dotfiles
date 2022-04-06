@@ -96,7 +96,7 @@ au FileType json setl sw=2 sts=2 et                " Indentation for json
 set hlsearch
 set incsearch
 set ignorecase
-set smartcase
+set smartcase     "type all lowercase = case-insensitive; type one+ words uppercase = case-sensitive
 
 " Git Branch/Lightline
 let g:lightline = {
@@ -126,3 +126,7 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 
+" Changes cursors depending on mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
