@@ -36,6 +36,7 @@ set softtabstop=2		" tab while typing
 set scrolloff=4			" scroll offset
 set backspace=indent,eol,start	" can backspace in insert mode
 set mouse=a			" can scroll with mouse
+set spell
 
 " Enable folding
 set foldmethod=indent
