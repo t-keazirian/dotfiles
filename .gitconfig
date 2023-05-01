@@ -1,0 +1,58 @@
+  1 [filter "lfs"]
+  2   clean = git-lfs clean -- %f
+  3   smudge = git-lfs smudge -- %f
+  4   process = git-lfs filter-process
+  5   required = true
+  6 [push]
+  7   autoSetupRemote = true
+  8 [user]
+  9   name = Taylor Keazirian
+ 10
+ 11 [alias]
+ 12 clean-branches = !"for b in `git branch --list --merged | grep -v master | grep -v \"*\"`; do git branch -d $b; done"
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"~/.gitconfig" 12L, 316B
