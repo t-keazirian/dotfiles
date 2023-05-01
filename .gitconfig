@@ -9,4 +9,6 @@
 	name = Taylor Keazirian
 
 [alias]
-clean-branches = !"for b in `git branch --list --merged | grep -v master | grep -v \"*\"`; do git branch -d $b; done"
+	clean-branches = !"for b in `git branch --list --merged | grep -v master | grep -v \"*\"`; do git branch -d $b; done"
+	# prune remote branches after they have been deleted
+	clean-remote = !"git fetch --prune origin"
