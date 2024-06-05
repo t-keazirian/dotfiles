@@ -15,6 +15,9 @@ export PATH="/usr/local/sbin:$PATH"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
 
+export BOUNDARY_ADDR=https://boundary.devops.prd.aws-01.legalzoom.com
+export BOUNDARY_AUTH_METHOD_ID=amoidc_rDNpMe2J9w
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -80,6 +83,9 @@ plugins=(git zsh-nvm zsh-autosuggestions colorize pyenv python pylint vundle zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# enable history 
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -151,3 +157,8 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+# pnpm
+export PNPM_HOME="/Users/taylorkeazirian/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
