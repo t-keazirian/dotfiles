@@ -28,10 +28,12 @@ let g:elm_format_on_save = 1
 
 " UI
 set number			" line numbers
+set ruler
 set showcmd			" show command at bottom
 set showmatch			" highlight matching [{()}]
 set clipboard=unnamed		" share clipboard
 set tabstop=2			" spaces per tab
+set shiftwidth=2  " shifts left or right by two spaces
 set softtabstop=2		" tab while typing
 set scrolloff=4			" scroll offset
 set backspace=indent,eol,start	" can backspace in insert mode
