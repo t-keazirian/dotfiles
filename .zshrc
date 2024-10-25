@@ -9,6 +9,12 @@ export PATH="$HOME/bin:$PATH"
 # from Homebrew's directions
 export PATH="/usr/local/sbin:$PATH"
 
+# fix vim to use homebrew
+export PATH="/usr/local/opt/vim/bin:$PATH"
+
+# use python from homebrew
+export PATH="/usr/local/opt/python@3.13/bin:$PATH"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -34,7 +40,7 @@ export BOUNDARY_AUTH_METHOD_ID=amoidc_rDNpMe2J9w
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -49,7 +55,7 @@ export BOUNDARY_AUTH_METHOD_ID=amoidc_rDNpMe2J9w
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -78,7 +84,7 @@ export BOUNDARY_AUTH_METHOD_ID=amoidc_rDNpMe2J9w
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-nvm zsh-autosuggestions colorize pyenv python pylint vundle zsh-syntax-highlighting web-search history jsontools macos)
+plugins=(git zsh-nvm zsh-autosuggestions colorize python pylint vundle zsh-syntax-highlighting web-search history jsontools macos)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,8 +114,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias hello="echo hello there"
 
 # echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
@@ -129,6 +133,7 @@ alias update="source ~/.zshrc"
 alias ll="ls -aGl"
 alias git-pull-all='for i in */.git; do (cd $i/..; echo "** pulling ${i} ** branch: $(git rev-parse --abbrev-ref HEAD)"; git pull --recurse-submodules; echo ""; ); done'
 alias open-git-config='git config --global --edit'
+alias python='/usr/local/opt/python@3.13/bin/python3'
 
 . /usr/local/opt/asdf/libexec/asdf.sh
 
@@ -162,3 +167,8 @@ load-nvmrc
 export PNPM_HOME="/Users/taylorkeazirian/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+export JAVA_HOME=$(brew --prefix openjdk)/libexec/openjdk.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+
+export PATH="/opt/homebrew/bin:$PATH"
