@@ -1,9 +1,6 @@
 set nocompatible
-filetype off
 
-execute pathogen#infect()
 syntax on
-filetype plugin indent on
 
 " Use Ctrl + [h,j,k,l] to move window focus
 noremap <C-h> <C-w>h
@@ -26,19 +23,39 @@ nnoremap <Leader>tg :TestVisit<CR>
 let g:mix_format_on_save = 1
 let g:elm_format_on_save = 1
 
+" Disable swap files
+set noswapfile
+
+" Nicer colors for status and command line
+set laststatus=2
+
+" More readable command line mode completion
+set wildmenu
+
 " UI
 set number			" line numbers
-set ruler
+set ruler       " show the cursor position
 set showcmd			" show command at bottom
 set showmatch			" highlight matching [{()}]
-set clipboard=unnamed		" share clipboard
-set tabstop=2			" spaces per tab
-set shiftwidth=2  " shifts left or right by two spaces
-set softtabstop=2		" tab while typing
+set clipboard=unnamedplus		" share clipboard and work with ctrl+v and ctrl+c
+
+set tabstop=4			" spaces per tab
+set shiftwidth=4  " shifts left or right by four spaces
+set softtabstop=4		" tab while typing
 set scrolloff=4			" scroll offset
+
+set spell
+" autocmd FileType markdown,text,gitcommit setlocal spell
 set backspace=indent,eol,start	" can backspace in insert mode
 set mouse=a			" can scroll with mouse
-set spell
+set expandtab " converts tabs to spaces
+set wrap " enable line wrapping
+
+set undofile " enable persistent undo
+
+" Split window behavior
+set splitright       " Vertical splits will automatically go to the right
+set splitbelow       " Horizontal splits will automatically go below
 
 " Enable folding
 set foldmethod=indent
@@ -53,7 +70,6 @@ call vundle#begin()
 let g:ackprg = 'ag --vimgrep'
 cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == "ag" ? "Ack" : "ag"
 
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
@@ -67,7 +83,6 @@ Plugin 'itchyny/lightline.vim'                     " Better status line
 Plugin 'git@github.com:itchyny/vim-gitbranch.git'  " Git Branch display
 Plugin 'elmcast/elm-vim'                           " Elm plugin
 Plugin 'elixir-lang/vim-elixir'                    " Elixir plugin
-Plugin 'slashmili/alchemist.vim'                   " Elixir plugin for ElixirSense
 Plugin 'elzr/vim-json'                             " Json
 Plugin 'w0rp/ale'                                  " Linting engine
 Plugin 'pangloss/vim-javascript'                   " Javascript
@@ -82,18 +97,12 @@ Plugin 'leafgarland/typescript-vim'                " Typescript syntax
 Plugin 'mileszs/ack.vim'                           " ack.vim (brew install ack the_silver_searcher)
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'fisadev/vim-isort'												 " call :Isort command and will reorder imports of current python file
+Plugin 'fisadev/vim-isort'							" call :Isort command and will reorder imports of current python file
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 au FileType json setl sw=2 sts=2 et                " Indentation for json
-
-" More Haskell stuff
-"let g:airline#extensions#ale#enabled = 1
-"nnoremap <Leader>ht :GhcModType<cr>
-"nnoremap <Leader>htc :GhcModTypeClear<cr>
-"autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
 " Better search
 set hlsearch
