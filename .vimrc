@@ -1,5 +1,4 @@
 set nocompatible
-
 syntax on
 
 " Use Ctrl + [h,j,k,l] to move window focus
@@ -38,20 +37,23 @@ set ruler       " show the cursor position
 set showcmd			" show command at bottom
 set showmatch			" highlight matching [{()}]
 set clipboard=unnamedplus		" share clipboard and work with ctrl+v and ctrl+c
+set history=1000
 
 set tabstop=4			" spaces per tab
-set shiftwidth=4  " shifts left or right by four spaces
+set shiftwidth=4        " shifts left or right by four spaces
 set softtabstop=4		" tab while typing
 set scrolloff=4			" scroll offset
-
 set spell
 " autocmd FileType markdown,text,gitcommit setlocal spell
+
 set backspace=indent,eol,start	" can backspace in insert mode
 set mouse=a			" can scroll with mouse
 set expandtab " converts tabs to spaces
 set wrap " enable line wrapping
 
 set undofile " enable persistent undo
+set ai       " autoindent
+set si       " smart indent"
 
 " Split window behavior
 set splitright       " Vertical splits will automatically go to the right
@@ -62,13 +64,16 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
+
+" Better search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase     "type all lowercase = case-insensitive; type one+ words uppercase = case-sensitive
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-" Search with ag in VIM
-let g:ackprg = 'ag --vimgrep'
-cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == "ag" ? "Ack" : "ag"
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -103,12 +108,6 @@ Plugin 'fisadev/vim-isort'							" call :Isort command and will reorder imports 
 call vundle#end()            " required
 filetype plugin indent on    " required
 au FileType json setl sw=2 sts=2 et                " Indentation for json
-
-" Better search
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase     "type all lowercase = case-insensitive; type one+ words uppercase = case-sensitive
 
 " Git Branch/Lightline
 let g:lightline = {
