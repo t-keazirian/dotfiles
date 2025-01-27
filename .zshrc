@@ -21,9 +21,6 @@ export PATH="/usr/local/opt/python@3.13/bin:$PATH"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
 
-export BOUNDARY_ADDR=https://boundary.devops.prd.aws-01.legalzoom.com
-export BOUNDARY_AUTH_METHOD_ID=amoidc_rDNpMe2J9w
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
