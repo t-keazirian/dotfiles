@@ -101,8 +101,6 @@ Plugin 'tomlion/vim-solidity'                      " Solidity syntax
 Plugin 'leafgarland/typescript-vim'                " Typescript syntax
 Plugin 'mileszs/ack.vim'                           " ack.vim (brew install ack the_silver_searcher)
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'fisadev/vim-isort'							" call :Isort command and will reorder imports of current python file
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

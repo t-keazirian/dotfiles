@@ -27,7 +27,7 @@ ENABLE_CORRECTION="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load?
-plugins=(git zsh-nvm zsh-autosuggestions colorize python pylint vundle zsh-syntax-highlighting web-search history jsontools macos)
+plugins=(git zsh-nvm zsh-autosuggestions colorize python pylint vundle zsh-syntax-highlighting web-search history jsontools macos sdk)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,6 +51,8 @@ alias ll="ls -aGl"
 alias git-pull-all='for i in */.git; do (cd $i/..; echo "** pulling ${i} ** branch: $(git rev-parse --abbrev-ref HEAD)"; git pull --recurse-submodules; echo ""; ); done'
 alias open-git-config='git config --global --edit'
 alias python='/opt/homebrew/opt/python@3.13/bin/python3'
+
+alias brew-maint="~/Scripts/brew-maintenance.sh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -90,3 +92,5 @@ export SDKMAN_AUTO_ENV=true
 
 # Turn off Spring Boot banners. They are not JSON.
 export SPRING_MAIN_BANNER_MODE=off
+
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
