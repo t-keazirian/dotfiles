@@ -1,10 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Update Homebrew paths for Apple Silicon
-export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/opt/homebrew/opt/vim/bin:$PATH"
-export PATH="/opt/homebrew/opt/python@3.13/bin:$PATH"
+# Update Homebrew paths for Apple Silicon (include /opt/homebrew/bin here)
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/opt/homebrew/opt/vim/bin:/opt/homebrew/opt/python@3.13/bin:$PATH"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
@@ -43,6 +41,11 @@ alias gc='git commit -v'
 alias gco='git checkout'
 alias gsw='git switch'
 alias gs='clear && git status'
+# add all + commit in command line
+# e.g. gcam "Updated README and fixed login bug"
+alias gcam='git add . && git commit -m'
+# add all + commit in vim
+alias gcav='git add . && git commit -v'
 
 alias openz="vim ~/.zshrc"
 alias openv="vim ~/.vimrc"
@@ -54,6 +57,7 @@ alias python='/opt/homebrew/opt/python@3.13/bin/python3'
 
 alias brew-maint="~/Scripts/brew-maintenance.sh"
 
+# nvm Initialization
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -65,24 +69,31 @@ load-nvmrc() {
   local nvmrc_path="$(nvm_find_nvmrc)"
 
   if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    # Read desired version from .nvmrc and strip any leading 'v'
+    local desired_version=$(sed 's/^v//' "$nvmrc_path")
+    local nvmrc_node_version=$(nvm version "$desired_version")
 
     if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
+      nvm install "$desired_version"
+      nvm use "$desired_version"
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+      nvm use "$desired_version"
     fi
+
+    # Force the active nvm Node bin directory to the front of PATH
+    local active_version="$(nvm current)"
+    export PATH="$NVM_DIR/versions/node/$active_version/bin:$(echo $PATH | sed -e "s#$NVM_DIR/versions/node/$active_version/bin:##")"
   elif [ "$node_version" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
+    local active_version="$(nvm current)"
+    export PATH="$NVM_DIR/versions/node/$active_version/bin:$(echo $PATH | sed -e "s#$NVM_DIR/versions/node/$active_version/bin:##")"
   fi
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# Homebrew path for M1 Mac (Apple Silicon)
-export PATH="/opt/homebrew/bin:$PATH"
-
+# (Removed duplicate Homebrew node path re-addition.)
 # Enable SDKMAN auto-env (similar to NVM's .nvmrc behavior)
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
@@ -94,3 +105,7 @@ export SDKMAN_AUTO_ENV=true
 export SPRING_MAIN_BANNER_MODE=off
 
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/taylorkeazirian/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
