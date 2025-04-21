@@ -21,20 +21,18 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# HIST_STAMPS="mm/dd/yyyy"
+COMPLETION_WAITING_DOTS="true"
 
 # Plugins
 plugins=(git zsh-nvm zsh-autosuggestions colorize python pylint vundle zsh-syntax-highlighting web-search history jsontools macos sdk zsh-kubectl-prompt mvn)
 
 source $ZSH/oh-my-zsh.sh
+
+# SDKMAN config
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+[[ -n "$SDKMAN_CANDIDATES_DIR" ]] && export JAVA_HOME="$SDKMAN_CANDIDATES_DIR/java/current"
+export SDKMAN_AUTO_ENV=true
 
 # User configuration
 
@@ -108,15 +106,9 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
-
-# (Removed duplicate Homebrew node path re-addition.)
-# Enable SDKMAN auto-env (similar to NVM's .nvmrc behavior)
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-# Enable SDKMAN auto-env feature
-export SDKMAN_AUTO_ENV=true
+# Controls the zsh-kubectl-prompt color
+# RPROMPT='%{$fg_bold[cyan]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+RPROMPT='%{$fg_bold[magenta]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 
 # Turn off Spring Boot banners. They are not JSON.
 export SPRING_MAIN_BANNER_MODE=off
