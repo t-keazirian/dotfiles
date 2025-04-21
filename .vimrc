@@ -18,6 +18,16 @@ nnoremap <Leader>ts :TestSuite<CR>
 nnoremap <Leader>tl :TestLast<CR>
 nnoremap <Leader>tg :TestVisit<CR>
 
+" enable 256‑color support if it isn’t already
+if &term =~ '256color'
+  set t_Co=256
+endif
+
+" enable true‑color support
+if has('termguicolors')
+  set termguicolors
+endif
+
 " vim-mix-format
 let g:mix_format_on_save = 1
 let g:elm_format_on_save = 1
@@ -36,7 +46,9 @@ set number			" line numbers
 set ruler       " show the cursor position
 set showcmd			" show command at bottom
 set showmatch			" highlight matching [{()}]
-set clipboard=unnamedplus		" share clipboard and work with ctrl+v and ctrl+c
+" set clipboard=unnamedplus		" share clipboard and work with ctrl+v and ctrl+c
+" unnamed plus was giving me some issues
+set clipboard=unnamed
 set history=1000
 
 set tabstop=4			" spaces per tab
@@ -139,3 +151,34 @@ let g:ale_fix_on_save = 1
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" ─── Custom high‑contrast highlights ───
+
+" Change the default search result color: yellow background
+highlight Search     ctermbg=yellow  ctermfg=NONE  gui=NONE
+" Change the incremental‑search (as you type) color: green background
+highlight IncSearch  ctermbg=cyan   ctermfg=NONE  gui=NONE
+" Change Visual‑mode selection color: dark grey background
+highlight Visual     ctermbg=darkgrey ctermfg=NONE gui=NONE
+" (If you use CursorLine) change that too:
+highlight CursorLine ctermbg=grey    cterm=NONE   gui=NONE
+
+" ─── Spelling error highlights ───
+
+" Invert fg/bg briefly so it really pops
+highlight SpellBad cterm=reverse ctermfg=NONE ctermbg=NONE gui=reverse
+
+" Missing-capital errors
+highlight SpellCap   ctermfg=yellow  cterm=underline  gui=undercurl guisp=Yellow
+
+" Rare words
+highlight SpellRare  ctermfg=cyan    cterm=underline  gui=undercurl guisp=Cyan
+
+" Local‑variant words
+highlight SpellLocal ctermfg=green   cterm=underline  gui=undercurl guisp=Green
+
+" ─── High‑contrast block cursor ───
+" black text on a bright yellow block:
+highlight Cursor    ctermfg=Black   ctermbg=Yellow cterm=NONE   gui=NONE
+" (Optional) in Insert mode use a colored bar instead of block:
+highlight CursorIM  ctermfg=Black   ctermbg=LightBlue cterm=NONE gui=NONE
