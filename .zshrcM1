@@ -8,6 +8,9 @@ export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/opt/homebrew/opt/vim/bin:/opt
 autoload -Uz compinit
 compinit
 
+alias m='./mvnw'
+compdef _mvn m
+
 # Add local completions directory
 fpath=(~/.zsh/completions $fpath)
 
@@ -60,7 +63,8 @@ alias git-pull-all='for i in */.git; do (cd $i/..; echo "** pulling ${i} ** bran
 alias open-git-config='git config --global --edit'
 alias python='/opt/homebrew/opt/python@3.13/bin/python3'
 
-alias brew-maint="~/Scripts/brew-maintenance.sh"
+alias brew-maint-complex="~/Scripts/brew-maintenance.sh"
+alias brew-maint="~/Scripts/brew-maintenance-simple.sh"
 
 # Kubectl
 alias k=kubectl
@@ -116,5 +120,5 @@ export SPRING_MAIN_BANNER_MODE=off
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="$HOME/.rd/bin:$PATH"
+export PATH="/Users/taylorkeazirian/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
